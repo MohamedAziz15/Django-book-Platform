@@ -11,6 +11,8 @@ class Author(models.Model):
     name = models.CharField(max_length=50)
     birth_date = models.DateField()
     biography = models.TextField(max_length=1000)
+    def __str__(self):
+        return self.name 
     #  class class Meta:
     #     db_table = ''
     #     managed = True
@@ -23,6 +25,8 @@ class Book(models.Model):
     Author = models.ForeignKey('Author',on_delete=models.SET_NULL,related_name="author_book", null=True, blank=True)
     publish_date = models.DateField()
     price = models.FloatField()
+    def __str__(self):
+        return self.title 
 
 ratings = (
     ('1', '1'),
