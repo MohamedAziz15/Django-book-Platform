@@ -3,9 +3,6 @@ from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
-
-
-
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=50)
@@ -28,13 +25,13 @@ class Book(models.Model):
     def __str__(self):
         return self.title 
 
-ratings = (
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-    ('5', '5')
-)
+# ratings = (
+#     ('1', '1'),
+#     ('2', '2'),
+#     ('3', '3'),
+#     ('4', '4'),
+#     ('5', '5')
+# )
 
 class review(models.Model):
     book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='Book_reviews')

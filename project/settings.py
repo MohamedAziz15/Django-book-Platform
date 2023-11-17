@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     #3rd apps
+    'django_summernote',
 
 
     #my apps
