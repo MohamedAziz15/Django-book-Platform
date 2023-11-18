@@ -39,14 +39,6 @@ class Book(models.Model):
         return super(Book ,self).save(*args, **kwargs)
     
 
-# ratings = (
-#     ('1', '1'),
-#     ('2', '2'),
-#     ('3', '3'),
-#     ('4', '4'),
-#     ('5', '5')
-# )
-
 class review(models.Model):
     book = models.ForeignKey('Book', on_delete=models.CASCADE, related_name='Book_reviews')
     reviewer_name = models.CharField(max_length=100)

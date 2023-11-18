@@ -10,3 +10,6 @@ def book_list(request):
 def book_detail(request,slug):
     book=Book.objects.get(slug=slug)
     return render(request,'book/book_details.html',{'book':book})
+
+
+

@@ -7,6 +7,10 @@ from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
+from rest_framework.views import APIView
+from rest_framework import status
+
+
 @api_view(['GET'])
 def book_list_api(request):
     books = Book.objects.all()
@@ -32,9 +36,25 @@ class AuthorListAPI(generics.ListCreateAPIView):
     ordering_fields = ['name', 'birth_date']
 
 
-class AuthorDetailAPI(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerlizer
+# class AuthorDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Author.objects.all()
+#     serializer_class = AuthorSerlizer
+
+class AuthorDetailAPI(APIView):
+    def get(self, request, pk):
+        try:
+            author = Author.objects.get(pk=pk)
+        except Author.DoesNotExist:
+            return Response({'error': 'Author not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        Author_serializer = AuthorSerlizer(author)
+        books = Book.objects.filter(Author=author)
+        books_serializer = bookSerlizer(books, many=True)
+
+        return Response({
+            'Author': Author_serializer.data,
+            'books': books_serializer.data,
+        }, status=status.HTTP_200_OK)    
 
 ####################################################################
 
@@ -47,10 +67,25 @@ class BookListAPI(generics.ListCreateAPIView):
     ordering_fields = ['price', 'publish_date']
 
 
-class BookDetailAPI(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Book.objects.select_related('review').all()
-    serializer_class = bookSerlizer
+# class BookDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Book.objects.select_related('review').all()
+#     serializer_class = bookSerlizer
 
+class BookDetailAPI(APIView):
+    def get(self, request, pk):
+        try:
+            book = Book.objects.get(pk=pk)
+        except Book.DoesNotExist:
+            return Response({'error': 'Book not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        book_serializer = bookSerlizer(book)
+        reviews = review.objects.filter(book=book)
+        reviews_serializer = ReviewSerlizer(reviews, many=True)
+
+        return Response({
+            'book': book_serializer.data,
+            'reviews': reviews_serializer.data,
+        }, status=status.HTTP_200_OK)
 
 ####################################################################
 
