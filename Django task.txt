@@ -30,7 +30,6 @@ Todo:
      -- details of all books 
      يعني api شبه اللي عملناها    
 
-*******************************
 reviews for each book 
 
   2 -- Authors:
@@ -42,6 +41,5 @@ reviews for each book
 make for list:
    1-- search
    2-- filter
-   **************
    3-- order
    4-- pagination 
