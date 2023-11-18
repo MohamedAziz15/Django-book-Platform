@@ -7,9 +7,18 @@ class bookSerlizer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class AuthorSerlizer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'
         
 
 
+class ReviewSerlizer(serializers.ModelSerializer):
+    class Meta:
+        model = review
+        fields = '__all__'
+        
 
 
 
