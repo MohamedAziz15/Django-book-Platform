@@ -41,9 +41,8 @@ INSTALLED_APPS = [
     #3rd apps
     'django_summernote',
     'django.contrib.humanize',
-    'django_faker',
-
-
+    # 'django_faker',
+    'rest_framework',
 
     #my apps
     'book',

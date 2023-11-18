@@ -28,12 +28,15 @@ Todo:
   1 -- books:
      -- list of all books
      -- details of all books 
+     يعني api شبه اللي عملناها    
+
 *******************************
-يعني api شبه اللي عملناها    
+reviews for each book 
 
   2 -- Authors:
      -- list of all authors    
      -- detail about every author   
+     يعني api شبه اللي عملناها    
 
 
 make for list:
